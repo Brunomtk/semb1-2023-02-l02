@@ -1,7 +1,6 @@
 Bruno Mendes da Silva 
 brunomendestk@ufu.br
 11921EAU016
-Data atual 
 
 # Lista de exercícios - Sistemas Embarcados I
 
