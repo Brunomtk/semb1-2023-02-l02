@@ -1,6 +1,6 @@
-Bruno Mendes da Silva 
-brunomendestk@ufu.br
-11921EAU016
+# Bruno Mendes da Silva 
+# brunomendestk@ufu.br
+# 11921EAU016
 
 # Lista de exercícios - Sistemas Embarcados I
 
