@@ -12,23 +12,23 @@
  ****************************************************************************/
 
 /****************************************************************************
- * Included Files
+ * Arquivos Incluídos
  ****************************************************************************/
 
 #include <stdint.h>
 
 /****************************************************************************
- * Pre-processor Definitions
+ * Definições do Pré-processador
  ****************************************************************************/
 
 #define SRAM_START  0x20000000U                  /* Início da SRAM CORTEX-M */
-#define SRAM_SIZE   (128U * 1024U)               /* Tam. SRAM STM32F411 128K */
+#define SRAM_SIZE   (128U * 1024U)               /* Tamanho da SRAM STM32F411 128K */
 #define SRAM_END    ((SRAM_START) + (SRAM_SIZE)) /* Final da SRAM STM32F411 */
 
 #define STACK_START SRAM_END                     /* Início da Stack */
 
 /****************************************************************************
- * Private Function Prototypes
+ * Protótipos de Funções Privadas
  ****************************************************************************/
 
 int main(void);
@@ -47,7 +47,7 @@ void pendsv_handler    (void) __attribute__ ((weak, alias("default_handler")));
 void systick_handler   (void) __attribute__ ((weak, alias("default_handler")));
 
 /****************************************************************************
- * External Data
+ * Dados Externos
  ****************************************************************************/
 
 /* Variáveis exportadas pelo linker script */
@@ -60,7 +60,7 @@ extern uint32_t _sbss;      /* Início da seção .bss */
 extern uint32_t _ebss;      /* Fim da seção .bss */
 
 /****************************************************************************
- * Private Data
+ * Dados Privados
  ****************************************************************************/
 
 /* Tabela de Vetores de Interrupção */
@@ -86,37 +86,38 @@ uint32_t vectors[] __attribute__((section(".isr_vectors"))) =
 };
 
 /****************************************************************************
- * Private Functions
+ * Funções Privadas
  ****************************************************************************/
 
-/* Função chamada após a inicialização do sistema */
 void reset_handler(void)
 {
-  uint32_t i;
+  uint32_t i; 
 
   /* Copia a seção .data para a RAM */
+   
   uint32_t size = (uint32_t)&_edata - (uint32_t)&_sdata;
-  uint8_t *pDst = (uint8_t*)&_sdata;    /* SRAM */
-  uint8_t *pSrc = (uint8_t*)&_la_data;  /* FLASH */
-
+  uint8_t *pDst = (uint8_t*)&_sdata;                      /* SRAM */
+  uint8_t *pSrc = (uint8_t*)&_la_data;                    /* FLASH */
+  
   for(i = 0; i < size; i++)
   {
     *pDst++ = *pSrc++;
   }
 
   /* Preenche a seção .bss com zero */
+
   size = (uint32_t)&_ebss - (uint32_t)&_sbss;
   pDst = (uint8_t*)&_sbss;
-  for(i = 0; i < size; i++)
+  for(i = 0 ; i < size; i++)
   {
     *pDst++ = 0;
   }
 
   /* Chama a função main() */
+
   main();
 }
 
-/* Função padrão para exceções */
 void default_handler(void)
 {
   while(1){};

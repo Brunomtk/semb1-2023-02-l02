@@ -1,8 +1,13 @@
 /****************************************************************************
  * main.c
  *
- *   Copyright (C) 2021 Daniel P. Carvalho. All rights reserved.
- *   Authors: Daniel P. Carvalho <daniel.carvalho@ufu.br>
+ *   Bruno Mendes da Silva
+ *   brunomendestk@ufu.br
+ *   11921EAU016
+ *
+ *   Direitos autorais (C) 2024 Bruno Mendes da Silva.
+ *   Todos os direitos reservados.
+ *   Autores: Bruno Mendes da Silva <brunomendestk@ufu.br>
  *
  ****************************************************************************/
 
@@ -125,7 +130,7 @@ int main(int argc, char *argv[])
   reg |= RCC_AHB1ENR_GPIOCEN;
   *pRCC_AHB1ENR = reg;
 
-  /* Configura PC13 como saida pull-up off e pull-down off */
+  /* Configura PC13 como saída pull-up off e pull-down off */
 
   reg = *pGPIOC_MODER;
   reg &= ~GPIO_MODER_MASK(13);
